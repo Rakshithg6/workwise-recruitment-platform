@@ -1,24 +1,35 @@
-# Welcome to your Lovable project
+# WorkWise India - Professional Job Portal
 
-## Project info
+WorkWise India is a modern job portal platform built with React, TypeScript, and Vite, designed to connect employers and job seekers in India. The platform offers a comprehensive suite of features for both employers and candidates.
 
-**URL**: https://lovable.dev/projects/12f17435-4769-48a7-ba04-350d45345372
+## Features
 
-## How can I edit this code?
+### For Employers
+- Post and manage job listings
+- Review candidate applications
+- Schedule and manage interviews
+- Access dashboard with recruitment analytics
+- Company profile management
 
-There are several ways of editing your application.
+### For Candidates
+- Create and manage professional profiles
+- Search and apply for jobs
+- Resume builder and management
+- Interview scheduling
+- Track application status
 
-**Use Lovable**
+## Tech Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/12f17435-4769-48a7-ba04-350d45345372) and start prompting.
+- **Frontend Framework:** React with TypeScript
+- **Build Tool:** Vite
+- **UI Components:** 
+  - Radix UI primitives
+  - Shadcn UI components
+- **State Management:** React Context + Hooks
+- **Form Handling:** React Hook Form with Zod validation
+- **Styling:** Tailwind CSS
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Project Structure
 
 Follow these steps:
 
@@ -60,10 +71,5 @@ This project is built with .
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/12f17435-4769-48a7-ba04-350d45345372) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+This README.md provides a comprehensive overview of your project, including its features, technology stack, project structure, setup instructions, and contribution guidelines. You can copy this content directly into your README.md file.
