@@ -2,6 +2,9 @@
 
 WorkWise India is a modern job portal platform built with React, TypeScript, and Vite, designed to connect employers and job seekers in India. The platform offers a comprehensive suite of features for both employers and candidates.
 
+![image](https://github.com/user-attachments/assets/675ea7a3-64d3-4d57-a327-4d0a07fa875a)
+
+
 ## Features
 
 ### For Employers
