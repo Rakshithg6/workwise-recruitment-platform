@@ -10,6 +10,18 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 
 app = FastAPI()
+
+# CORS setup to allow Vercel frontend
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://workwise-recruitment-platform.vercel.app"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 SECRET_KEY = "your_jwt_secret"
 ALGORITHM = "HS256"
 MONGO_URL = os.environ.get("MONGO_URI", "mongodb://localhost:27017")
