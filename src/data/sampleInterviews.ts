@@ -20,144 +20,67 @@ interface Interview {
 }
 
 export const sampleInterviews: Interview[] = [
+  // Teams interview 1
   {
-    id: 1,
+    id: 101,
     candidateId: 101,
-    candidateName: "John Doe",
-    company: "Accenture",
-    position: "DevOps Engineer",
-    date: "2025-04-15",
-    time: "2:00 PM",
-    duration: 60,
-    meetingLink: "https://meet.google.com/abc-defg-hij",
-    notes: "Technical interview for DevOps position",
+    candidateName: "Rakshith",
+    company: "AzureSoft",
+    position: "software Engineer",
+    date: "2025-04-17",
+    time: "09:00",
+    duration: 45,
+    meetingLink: "https://teams.microsoft.com/l/meetup-join/azure-cloud-101",
+    notes: "Cloud fundamentals and Azure services.",
     status: "Scheduled",
-    createdAt: "2025-04-02",
+    createdAt: "2025-04-15",
     interviewer: {
-      id: 201,
-      name: "Michael Brown",
-      position: "Senior DevOps Engineer",
-      email: "michael.brown@accenture.com"
+      id: 301,
+      name: "Priya Menon",
+      position: "Cloud Architect",
+      email: "priya.menon@azuresoft.com"
     }
   },
+  // Teams interview 2
   {
-    id: 2,
+    id: 102,
     candidateId: 101,
-    candidateName: "John Doe",
-    company: "Amazon",
-    position: "Software Development Engineer",
+    candidateName: "Rakshith",
+    company: "Teams4U",
+    position: "Deveops Engineer",
     date: "2025-04-18",
-    time: "11:30 AM",
-    duration: 60,
-    meetingLink: "https://meet.google.com/pqr-stuv-wxy",
-    notes: "Technical interview with the development team",
+    time: "14:00",
+    duration: 30,
+    meetingLink: "https://teams.microsoft.com/l/meetup-join/teams4u-support-102",
+    notes: "Technical support scenario interview.",
     status: "Scheduled",
-    createdAt: "2025-04-03",
+    createdAt: "2025-04-16",
     interviewer: {
-      id: 202,
-      name: "Sarah Chen",
-      position: "Senior SDE",
-      email: "sarah.chen@amazon.com"
+      id: 302,
+      name: "Alex Lee",
+      position: "Support Lead",
+      email: "alex.lee@teams4u.com"
     }
   },
+  // Teams interview 3
   {
-    id: 3,
+    id: 103,
     candidateId: 101,
-    candidateName: "John Doe",
-    company: "TechCorp India",
-    position: "Senior Software Engineer",
-    date: "2025-04-10",
-    time: "10:00 AM",
-    duration: 60,
-    meetingLink: "https://meet.google.com/xyz-abcd-efg",
-    notes: "Technical round with the development team",
-    status: "Scheduled",
-    createdAt: "2025-04-01",
-    interviewer: {
-      id: 201,
-      name: "Rajesh Kumar",
-      position: "Engineering Manager",
-      email: "rajesh.kumar@techcorp.in"
-    }
-  },
-  {
-    id: 4,
-    candidateId: 101,
-    candidateName: "John Doe",
-    company: "Innovate Solutions",
+    candidateName: "Rakshth G",
+    company: "Contoso",
     position: "Frontend Developer",
-    date: "2025-04-12",
-    time: "2:00 PM",
-    duration: 45,
-    meetingLink: "https://meet.google.com/xyz-uvwx-yz",
-    notes: "Technical interview with the development team",
-    status: "Scheduled",
-    createdAt: "2025-04-02",
-    interviewer: {
-      id: 202,
-      name: "Rahul Verma",
-      position: "Senior Developer",
-      email: "rahul.verma@innovatesolutions.com"
-    }
-  },
-  {
-    id: 5,
-    candidateId: 101,
-    candidateName: "John Doe",
-    company: "Digital Dynamics",
-    position: "Full Stack Developer",
-    date: "2025-04-05",
-    time: "10:00",
+    date: "2025-04-19",
+    time: "11:15",
     duration: 60,
-    meetingLink: "https://meet.google.com/pqr-stu-vwx",
-    notes: "Interview completed successfully. Follow-up expected within a week.",
-    status: "Completed",
-    createdAt: "2025-04-01",
-    interviewer: {
-      id: 203,
-      name: "Anita Kumar",
-      position: "Engineering Manager",
-      email: "anita.kumar@digitaldynamics.com"
-    }
-  },
-  {
-    id: 6,
-    candidateId: 101,
-    candidateName: "John Doe",
-    company: "CloudTech Solutions",
-    position: "DevOps Engineer",
-    date: "2025-04-07",
-    time: "15:30",
-    duration: 45,
-    meetingLink: "https://meet.google.com/lmn-opq-rst",
-    notes: "Cancelled due to scheduling conflict. To be rescheduled.",
-    status: "Cancelled",
-    createdAt: "2025-03-30",
-    interviewer: {
-      id: 204,
-      name: "Vikram Singh",
-      position: "DevOps Lead",
-      email: "vikram.singh@cloudtech.com"
-    }
-  },
-  {
-    id: 7,
-    candidateId: 101,
-    candidateName: "John Doe",
-    company: "WebSphere Technologies",
-    position: "Backend Developer",
-    date: "2025-04-15",
-    time: "13:00",
-    duration: 60,
-    meetingLink: "https://meet.google.com/def-ghi-jkl",
-    notes: "System design round with the backend team",
+    meetingLink: "https://teams.microsoft.com/l/meetup-join/contoso-frontend-103",
+    notes: "Live coding and UI design discussion.",
     status: "Scheduled",
-    createdAt: "2025-04-03",
+    createdAt: "2025-04-16",
     interviewer: {
-      id: 205,
-      name: "Neha Patel",
-      position: "Backend Team Lead",
-      email: "neha.patel@websphere.com"
+      id: 303,
+      name: "Sara Williams",
+      position: "UI Lead",
+      email: "sara.williams@contoso.com"
     }
   }
 ];

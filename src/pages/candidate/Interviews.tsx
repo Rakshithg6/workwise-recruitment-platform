@@ -100,18 +100,8 @@ const Interviews = () => {
 
 
   const handleJoinMeeting = (meetingLink: string) => {
-    if (meetingLink && meetingLink.includes('meet.google.com')) {
-      // Open Google Meet link in a new window with proper size
-      const width = 1200;
-      const height = 800;
-      const left = (window.screen.width - width) / 2;
-      const top = (window.screen.height - height) / 2;
-      
-      window.open(
-        meetingLink,
-        'GoogleMeet',
-        `width=${width},height=${height},top=${top},left=${left},menubar=no,toolbar=no,location=yes,status=no`
-      );
+    if (meetingLink && (meetingLink.startsWith('http://') || meetingLink.startsWith('https://'))) {
+      window.open(meetingLink, '_blank');
     } else {
       toast({
         title: 'Error',

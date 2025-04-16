@@ -50,7 +50,7 @@ export const InterviewScheduleDialog: React.FC<InterviewScheduleDialogProps> = (
       time,
       type: interviewType,
       location: interviewType === 'remote' 
-        ? location || `https://meet.google.com/${Math.random().toString(36).substring(7)}`
+        ? location || `https://teams.microsoft.com/l/meetup-join/${Math.random().toString(36).substring(7)}`
         : location
     };
 

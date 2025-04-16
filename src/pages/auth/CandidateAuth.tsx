@@ -27,6 +27,17 @@ const CandidateAuth = ({ isSignup = false }: CandidateAuthProps) => {
     confirmPassword: ''
   });
 
+  // Clear fields when switching between login/signup
+  useEffect(() => {
+    setFormData({
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
+    });
+  }, [isSignup]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -95,38 +106,64 @@ const CandidateAuth = ({ isSignup = false }: CandidateAuthProps) => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [formMessage, setFormMessage] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (!validateForm()) return;
-    
     setIsLoading(true);
-    
-    // Mock authentication
-    setTimeout(() => {
+    try {
+      const endpoint = isSignup ? '/candidate/signup' : '/candidate/login';
+      const resp = await fetch(`http://localhost:8000${endpoint}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password
+        })
+      });
+      const data = await resp.json();
       setIsLoading(false);
-      
-      // Store user data in context and localStorage
-      updateUserData({
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        role: 'candidate'
-      });
-      
-      // Clear any previous chatbot session data
-      localStorage.removeItem('workwise-chatbot-dismissed');
-      sessionStorage.removeItem('workwise-chatbot-greeted');
-      
+      if (!resp.ok) {
+        if (!isSignup && data.detail === "User doesn't exist. Please sign up first.") {
+          setFormMessage("User doesn't exist. Please sign up.");
+        } else {
+          setFormMessage(data.detail || 'Authentication failed');
+        }
+        return;
+      }
+      setFormMessage(null);
+      // On signup, backend returns { message, id }, on login returns { token, user }
+      if (isSignup) {
+        toast({
+          title: 'Signup successful!',
+          description: 'Your candidate account has been created.',
+        });
+        navigate('/candidate/dashboard'); // Go directly to dashboard after signup
+      } else {
+        // Store JWT token and user info
+        localStorage.setItem('token', data.token);
+        updateUserData({
+          email: data.user.email,
+          id: data.user.id,
+          role: 'candidate'
+        });
+        localStorage.removeItem('workwise-chatbot-dismissed');
+        sessionStorage.removeItem('workwise-chatbot-greeted');
+        toast({
+          title: 'Welcome back!',
+          description: 'You have successfully logged in.',
+        });
+        navigate('/candidate/dashboard');
+      }
+    } catch (error) {
+      setIsLoading(false);
       toast({
-        title: isSignup ? "Account created!" : "Welcome back!",
-        description: isSignup 
-          ? "Your candidate account has been created." 
-          : "You have successfully logged in.",
+        title: 'Network error',
+        description: 'Could not connect to backend.',
+        variant: 'destructive'
       });
-      
-      navigate('/candidate/dashboard');
-    }, 1500);
+    }
   };
 
   return (
@@ -208,7 +245,13 @@ const CandidateAuth = ({ isSignup = false }: CandidateAuthProps) => {
               <span className="px-2 text-gray-500 bg-gray-900">Or continue with email</span>
             </div>
           </div>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          {formMessage && (
+            <div className="mb-4 rounded bg-red-900/70 text-red-200 px-3 py-2 text-center text-sm">
+              {formMessage}
+            </div>
+          )}
+          <form onSubmit={handleSubmit} className="space-y-4" autoComplete="off" autoCorrect="off" spellCheck={false}>
+
             {isSignup && (
               <>
                 <div>
@@ -241,6 +284,7 @@ const CandidateAuth = ({ isSignup = false }: CandidateAuthProps) => {
                 type="email"
                 id="email"
                 name="email"
+                autoComplete="new-email" // random string to defeat autofill
                 value={formData.email}
                 onChange={handleChange}
                 className="mt-1 block w-full rounded-md bg-gray-800 border-gray-700 text-white"
@@ -252,6 +296,7 @@ const CandidateAuth = ({ isSignup = false }: CandidateAuthProps) => {
                 type="password"
                 id="password"
                 name="password"
+                autoComplete="new-password-unique" // random string to defeat autofill
                 value={formData.password}
                 onChange={handleChange}
                 className="mt-1 block w-full rounded-md bg-gray-800 border-gray-700 text-white"
@@ -264,6 +309,7 @@ const CandidateAuth = ({ isSignup = false }: CandidateAuthProps) => {
                   type="password"
                   id="confirmPassword"
                   name="confirmPassword"
+                  autoComplete="new-password-unique2" // random string to defeat autofill
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   className="mt-1 block w-full rounded-md bg-gray-800 border-gray-700 text-white"

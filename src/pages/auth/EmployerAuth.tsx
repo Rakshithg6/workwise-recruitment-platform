@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -25,6 +25,18 @@ const EmployerAuth = ({ isSignup = false }: EmployerAuthProps) => {
     password: '',
     confirmPassword: ''
   });
+
+  // Clear fields when switching between login/signup
+  useEffect(() => {
+    setFormData({
+      firstName: '',
+      lastName: '',
+      email: '',
+      companyName: '',
+      password: '',
+      confirmPassword: ''
+    });
+  }, [isSignup]);
   const { toast } = useToast();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,39 +73,78 @@ const EmployerAuth = ({ isSignup = false }: EmployerAuthProps) => {
     return true;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [formMessage, setFormMessage] = useState<string | null>(null);
+
+  // List of personal domains not allowed for employer signup
+  const personalEmailDomains = [
+    'gmail.com', 'yahoo.com', 'outlook.com', 'hotmail.com', 'protonmail.com', 'icloud.com', 'aol.com', 'mail.com', 'zoho.com', 'yandex.com', 'gmx.com', 'rediffmail.com', 'msn.com', 'live.com', 'pm.me', 'fastmail.com'
+  ];
+
+  const isPersonalEmail = (email: string) => {
+    const domain = email.split('@')[1]?.toLowerCase();
+    return personalEmailDomains.includes(domain);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (!validateForm()) return;
-    
+    if (isSignup && isPersonalEmail(formData.email)) {
+      setFormMessage('Please use your company email address (not gmail, yahoo, outlook, etc).');
+      return;
+    }
     setIsLoading(true);
-    
-    // Mock authentication
-    setTimeout(() => {
+    try {
+      const endpoint = isSignup ? '/employer/signup' : '/employer/login';
+      const resp = await fetch(`http://localhost:8000${endpoint}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password
+        })
+      });
+      const data = await resp.json();
       setIsLoading(false);
-      
-      // Store user data in context and localStorage
-      updateUserData({
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        companyName: formData.companyName,
-        role: 'employer'
-      });
-      
-      // Clear any previous chatbot session data
-      localStorage.removeItem('workwise-chatbot-dismissed');
-      sessionStorage.removeItem('workwise-chatbot-greeted');
-      
+      if (!resp.ok) {
+        if (!isSignup && data.detail === "User doesn't exist. Please sign up first.") {
+          setFormMessage("User doesn't exist. Please sign up.");
+        } else {
+          setFormMessage(data.detail || 'Authentication failed');
+        }
+        return;
+      }
+      setFormMessage(null);
+      // On signup, backend returns { message, id }, on login returns { token, user }
+      if (isSignup) {
+        toast({
+          title: 'Signup successful!',
+          description: 'Your employer account has been created.',
+        });
+        navigate('/employer/dashboard'); // Go directly to dashboard after signup
+      } else {
+        // Store JWT token and user info
+        localStorage.setItem('token', data.token);
+        updateUserData({
+          email: data.user.email,
+          id: data.user.id,
+          role: 'employer'
+        });
+        localStorage.removeItem('workwise-chatbot-dismissed');
+        sessionStorage.removeItem('workwise-chatbot-greeted');
+        toast({
+          title: 'Welcome back!',
+          description: 'You have successfully logged in.',
+        });
+        navigate('/employer/dashboard');
+      }
+    } catch (error) {
+      setIsLoading(false);
       toast({
-        title: isSignup ? "Account created!" : "Welcome back!",
-        description: isSignup 
-          ? "Your employer account has been created." 
-          : "You have successfully logged in.",
+        title: 'Network error',
+        description: 'Could not connect to backend.',
+        variant: 'destructive'
       });
-      
-      navigate('/employer/dashboard');
-    }, 1500);
+    }
   };
 
   return (
@@ -108,7 +159,12 @@ const EmployerAuth = ({ isSignup = false }: EmployerAuthProps) => {
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
-          <form onSubmit={handleSubmit}>
+          {formMessage && (
+            <div className="mb-4 rounded bg-red-900/70 text-red-200 px-3 py-2 text-center text-sm">
+              {formMessage}
+            </div>
+          )}
+          <form onSubmit={handleSubmit} autoComplete="off" autoCorrect="off" spellCheck={false}>
             {isSignup && (
               <>
                 <div className="grid gap-2">
@@ -166,7 +222,7 @@ const EmployerAuth = ({ isSignup = false }: EmployerAuthProps) => {
                 placeholder="Email"
                 type="email"
                 autoCapitalize="none"
-                autoComplete="email"
+                autoComplete="new-employer-email"
                 value={formData.email}
                 onChange={handleChange}
                 disabled={isLoading}
@@ -180,7 +236,7 @@ const EmployerAuth = ({ isSignup = false }: EmployerAuthProps) => {
                 name="password"
                 placeholder="Password"
                 type="password"
-                autoComplete="current-password"
+                autoComplete="new-password-employer"
                 value={formData.password}
                 onChange={handleChange}
                 disabled={isLoading}
@@ -195,7 +251,7 @@ const EmployerAuth = ({ isSignup = false }: EmployerAuthProps) => {
                   name="confirmPassword"
                   placeholder="Confirm Password"
                   type="password"
-                  autoComplete="new-password"
+                  autoComplete="new-password-employer2"
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   disabled={isLoading}

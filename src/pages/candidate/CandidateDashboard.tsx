@@ -114,7 +114,7 @@ const CandidateDashboard = () => {
                 <BriefcaseIcon size={18} />
               </div>
             </div>
-            <p className="text-3xl font-bold text-white">12</p>
+            <p className="text-3xl font-bold text-white">5</p>
             <p className="text-sm font-medium text-gray-400">Total job applications</p>
             <div className="mt-4 pt-4 border-t border-[#2a2f3e]">
               <Link to="/candidate/applications" className="text-blue-500 hover:text-blue-400 text-sm font-bold flex items-center">
