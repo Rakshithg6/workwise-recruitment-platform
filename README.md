@@ -21,6 +21,9 @@ WorkWise India is a modern job portal platform built with React, TypeScript, and
 - Interview scheduling
 - Track application status
 
+  ![WhatsApp Image 2025-04-16 at 12 16 54_93978ebb](https://github.com/user-attachments/assets/083b40e6-f0a1-479d-82f5-2d51696864cf)
+
+
 ## Tech Stack
 
 - **Frontend Framework:** React with TypeScript
