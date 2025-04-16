@@ -7,11 +7,12 @@ from passlib.context import CryptContext
 from jose import jwt, JWTError
 from bson import ObjectId
 from fastapi.middleware.cors import CORSMiddleware
+import os
 
 app = FastAPI()
 SECRET_KEY = "your_jwt_secret"
 ALGORITHM = "HS256"
-MONGO_URL = "mongodb://localhost:27017"
+MONGO_URL = os.environ.get("MONGO_URI", "mongodb://localhost:27017")
 DB_NAME = "workwise"
 
 # Robust MongoDB connection check
