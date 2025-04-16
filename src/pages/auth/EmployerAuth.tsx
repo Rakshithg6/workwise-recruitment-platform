@@ -95,7 +95,8 @@ const EmployerAuth = ({ isSignup = false }: EmployerAuthProps) => {
     setIsLoading(true);
     try {
       const endpoint = isSignup ? '/employer/signup' : '/employer/login';
-      const apiBase = process.env.REACT_APP_API_URL || "http://localhost:8000";
+      const apiBase = import.meta.env.VITE_REACT_APP_API_URL || "http://localhost:8000";
+      console.log("[EmployerAuth] API BASE:", apiBase);
       const resp = await fetch(`${apiBase}${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
