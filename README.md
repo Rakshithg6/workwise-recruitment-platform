@@ -32,7 +32,7 @@ WorkWise India is a modern job portal platform built with React, TypeScript, and
 - Interview scheduling
 - Track application status
 
-![Profile views](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHJ0dzRmNHEzc3V0OG40dzBjZW9yNThvbzg4eGh0YzlheTQzNTN3OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qNLVw5pjdIS10cItDe/giphy.gif)
+![candidates](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHJ0dzRmNHEzc3V0OG40dzBjZW9yNThvbzg4eGh0YzlheTQzNTN3OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qNLVw5pjdIS10cItDe/giphy.gif)
 
 
 ## Tech Stack
@@ -90,6 +90,8 @@ This project is built with .
 - React
 - shadcn-ui
 - Tailwind CSS
+
+![developer](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjYyNXZxaXh0M21mamtnNnpsbmFzbm03MmF2bTR2Ym90ZTkwa2tyYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bGgsc5mWoryfgKBx1u/giphy.gif)
 
 
 This README.md provides a comprehensive overview of your project, including its features, technology stack, project structure, setup instructions, and contribution guidelines. You can copy this content directly into your README.md file.
