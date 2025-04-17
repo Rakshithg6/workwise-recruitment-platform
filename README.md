@@ -1,5 +1,13 @@
 # WorkWise India - Professional Job Portal
 
+
+![Tech Stack](https://img.shields.io/badge/Built%20with-React%20%7C%20TypeScript%20%7C%20Vite%20%7C%20Tailwind-blue?style=for-the-badge&logo=react)
+![CI/CD](https://img.shields.io/github/workflow/status/<Rakshithg6>/<workwise-recruitment-platform>/CI?style=for-the-badge&logo=github-actions)
+![Issues](https://img.shields.io/github/issues/Rakshithg6/workwise-recruitment-platform?style=for-the-badge)
+![PRs](https://img.shields.io/github/issues-pr/Rakshithg6/workwise-recruitment-platform?style=for-the-badge)
+![Stars](https://img.shields.io/github/stars/Rakshithg6/workwise-recruitment-platform?style=for-the-badge)
+![Visitors](https://komarev.com/ghpvc/?username=Rakshithg6&label=Profile%20views&color=blue&style=for-the-badge)
+
 WorkWise India is a modern job portal platform built with React, TypeScript, and Vite, designed to connect employers and job seekers in India. The platform offers a comprehensive suite of features for both employers and candidates.
 
 ![image](https://github.com/user-attachments/assets/675ea7a3-64d3-4d57-a327-4d0a07fa875a)
