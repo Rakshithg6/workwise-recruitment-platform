@@ -23,5 +23,5 @@ test_post("/candidate/login", {"email": "testuser@example.com", "password": "tes
 test_post("/candidate/login", {"email": "testuser@example.com", "password": "wrongpass"}, "Login (wrong)")
 
 # Test login with non-existent email
-test_post("/candidate/login", {"email": "nouser@example.com", "password": "testpass"}, "Login (non-existent)")
-
+login_resp_none = requests.post(f"{BASE}/candidate/login", json={"email": "nouser@example.com", "password": "testpass"})
+print("Login (non-existent):", login_resp_none.status_code, login_resp_none.json())
