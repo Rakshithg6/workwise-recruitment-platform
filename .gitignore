@@ -7,10 +7,21 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependency directories
 node_modules
 dist
 dist-ssr
 *.local
+
+# Environment and secrets
+.env
+.env.*
+.venv
+# Docker secrets
+secrets/
+# Python bytecode
+__pycache__/
+*.py[cod]
 
 # Editor directories and files
 .vscode/*

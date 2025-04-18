@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+  backend:
+    build:
+      context: ./src/backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    # Uncomment below if you need environment variables
+    # env_file:
+    #   - .env
