@@ -46,7 +46,7 @@ WorkWise India is a modern job portal platform built with React, TypeScript, and
 - **Form Handling:** React Hook Form with Zod validation
 - **Styling:** Tailwind CSS
 
- ![WhatsApp Image 2025-04-16 at 12 16 54_93978ebb](https://github.com/user-attachments/assets/083b40e6-f0a1-479d-82f5-2d51696864cf)
+![image](https://github.com/user-attachments/assets/31dc2639-b136-4ebc-85be-54aa1bc09b7a)
 
 
 ## Project Structure
