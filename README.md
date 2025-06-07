@@ -1,4 +1,4 @@
-# WorkWise India - Professional Job Portal
+# WorkWise India - Professional Job Portal : 
 
 
 ![Tech Stack](https://img.shields.io/badge/Built%20with-React%20%7C%20TypeScript%20%7C%20Vite%20%7C%20Tailwind-blue?style=for-the-badge&logo=react)
